@@ -1,1 +1,1 @@
-This is my pthon projects.
+This is my python project
