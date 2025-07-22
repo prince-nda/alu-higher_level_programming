@@ -1,4 +1,4 @@
-- only cities in cal 
+-- only cities in cal 
 SELECT cities.id, cities.name
 FROM cities, states
 WHERE cities.state_id = states.id
