@@ -1,1 +1,1 @@
-This is my readme file which contains python input and output
+This my readme which contains SOL more Queries
