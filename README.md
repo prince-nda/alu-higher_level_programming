@@ -1,1 +1,1 @@
-This my readme which contains SOL more Queries
+This my readme which contains Python network
