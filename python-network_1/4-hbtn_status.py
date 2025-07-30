@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This module fetches https://alu-intranet.hbtn.io/status using requests package
+This module fetches a status URL using requests package
 and displays the response body information.
 """
 import requests
@@ -8,9 +8,9 @@ import requests
 
 if __name__ == "__main__":
     """
-    Fetches https://alu-intranet.hbtn.io/status and displays response body info.
+    Fetches the status URL and displays response body info.
     """
-    url = "https://alu-intranet.hbtn.io/status"
+    url = "https://intranet.hbtn.io/status"
     response = requests.get(url)
     
     print("Body response:")
