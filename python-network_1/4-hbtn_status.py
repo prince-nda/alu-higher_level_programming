@@ -1,22 +1,29 @@
 #!/usr/bin/python3
+"""A script that:
+- Fetches status from https://intranet.hbtn.io/status or http://0.0.0.0:5050/status
+- Uses urllib package
+- Displays response body in required format
 """
-Module that fetches status from a URL using requests package.
-
-This module uses the requests library to make HTTP requests and displays
-information about the response body including its type and content.
-The response text is automatically decoded by requests into a string.
-Works with both https://intranet.hbtn.io/status and http://0.0.0.0:5050/status
-"""
-import requests
+import urllib.request
+import urllib.error
 
 
 if __name__ == "__main__":
-    # Change this URL to test different endpoints:
-    # For intranet: url = 'https://intranet.hbtn.io/status'
-    # For local: url = 'http://0.0.0.0:5050/status'
-    url = 'https://alu-intranet.hbtn.io/status'
-    url = 'http://0.0.0.0:5050/status'
-    response = requests.get(url)
-    print("Body response:")
-    print("\t- type: {}".format(type(response.text)))
-    print("\t- content: {}".format(response.text))
+    urls = [
+        'https://alx-intranet.hbtn.io/status',  # Primary URL
+        'http://0.0.0.0:5050/status'           # Fallback URL
+    ]
+    
+    for url in urls:
+        try:
+            with urllib.request.urlopen(url) as response:
+                content = response.read()
+                print("Body response:")
+                print("\t- type: {}".format(type(content)))
+                print("\t- content: {}".format(content))
+                print("\t- utf8 content: {}".format(content.decode('utf-8')))
+                break
+        except urllib.error.URLError:
+            continue
+    else:
+        print("Error: Could not fetch status from any URL.")
