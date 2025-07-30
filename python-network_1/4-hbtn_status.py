@@ -1,14 +1,6 @@
 #!/usr/bin/python3
-"""Fetches status from either:
-- https://intranet.hbtn.io/status (primary)
-- http://0.0.0.0:5050/status (fallback)
-using requests package.
-"""
-import urllib.request
-
-url = 'https://intranet.hbtn.io/status'
-if url.startswith('https://'):
-    url = 'https://alu-intranet.hbtn.io/status'
+"""fetches https://intranet.hbtn.io/status."""
+import requests
 
 
 if __name__ == "__main__":
