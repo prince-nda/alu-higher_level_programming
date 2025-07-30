@@ -15,7 +15,7 @@ if __name__ == "__main__":
     # For intranet: url = 'https://intranet.hbtn.io/status'
     # For local: url = 'http://0.0.0.0:5050/status'
     url = 'https://alu-intranet.hbtn.io/status'
-    
+    url = 'http://0.0.0.0:5050/status'
     response = requests.get(url)
     print("Body response:")
     print("\t- type: {}".format(type(response.text)))
