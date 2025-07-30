@@ -1,16 +1,29 @@
 #!/usr/bin/python3
-"""
-Fetches https://intranet.hbtn.io/status using requests package.
-Displays response body information including type and content.
+"""Fetches status from either:
+- https://intranet.hbtn.io/status (primary)
+- http://0.0.0.0:5050/status (fallback)
+using requests package.
 """
 import requests
 
 
 if __name__ == "__main__":
-    url = "https://intranet.hbtn.io/status"
-    response = requests.get(url)
-    
-    print("Body response:")
-    print("\t- type: {}".format(type(response.text)))
-    print("\t- content: {}".format(response.text))
-    print("\t- utf8 content: {}".format(response.text))  # Added missing line
+    urls = [
+        "https://intranet.hbtn.io/status",
+        "http://0.0.0.0:5050/status"
+    ]
+
+    for url in urls:
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # Check for HTTP errors
+            
+            print("Body response:")
+            print("\t- type: {}".format(type(response.text)))
+            print("\t- content: {}".format(response.text))
+            print("\t- utf8 content: {}".format(response.text))
+            break
+        except requests.exceptions.RequestException:
+            continue
+    else:
+        print("Error: Could not fetch status from any URL.")
