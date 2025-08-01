@@ -1,10 +1,15 @@
 #!/usr/bin/python3
-"""deletes data from database"""
+"""
+Deletes all State objects with a name containing
+the letter a from the database hbtn_0e_6_usa.
+Usage: ./13-model_state_delete_a.py <mysql username> /
+                                    <mysql password> /
+                                    <database name>
+"""
 import sys
-from model_state import Base, State
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
-
+from sqlalchemy.orm import sessionmaker
+from model_state import State
 
 if __name__ == "__main__":
     engine = create_engine("mysql+mysqldb://{}:{}@localhost/{}"
@@ -12,13 +17,8 @@ if __name__ == "__main__":
                            pool_pre_ping=True)
     Session = sessionmaker(bind=engine)
     session = Session()
-    Base.metadata.create_all(engine)
 
-    result = session.query(State).filter(State.name.like('%a%'))
-
-    for row in result:
-        session.delete(row)
-
+    for state in session.query(State):
+        if "a" in state.name:
+            session.delete(state)
     session.commit()
-
-    session.close()
