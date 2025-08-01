@@ -1,5 +1,4 @@
-
-i#!/usr/bin/python3
+#!/usr/bin/python3
 """deletes data from database"""
 import sys
 from model_state import Base, State
